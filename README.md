@@ -1,6 +1,6 @@
 # Cycloidal Drive
 
-<a href="https://www.youtube.com/watch?v=SKIDw2HNKAg">
+<a href="https://www.youtube.com/watch?v=WIKjf5lulUA">
   <img src="https://img.youtube.com/vi/WIKjf5lulUA/maxresdefault.jpg" width="600">
 </a>
 
