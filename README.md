@@ -1,7 +1,11 @@
 # Cycloidal Drive
 
-[![Watch the video](link-to-video-thumbnail.jpg)](Link-to-your-YouTube-video-or-embed-a-GIF-here)
-*Short caption explaining what is happening in the video.*
+<a href="https://www.youtube.com/watch?v=SKIDw2HNKAg">
+  <img src="https://img.youtube.com/vi/WIKjf5lulUA/maxresdefault.jpg" width="600">
+</a>
+
+
+[Click here or on the image to watch the video](https://youtu.be/WIKjf5lulUA)
 
 
 I built a cycloidal drive that will later function as a joint in a custom 5-degree-of-freedom robotic arm. The system achieves a 20:1 gear reduction, handling up to XXX Nm of torque while keeping backlash under 0.6°. This setup delivers the high torque and precise output control necessary for robotic actuators.
@@ -20,7 +24,7 @@ I built a cycloidal drive that will later function as a joint in a custom 5-degr
 
 
 ### Electrical
-* **Microcontroller:**ESP32-WROVER Board, BLDC SimpleFOC Board (Clone)
+* **Microcontroller:** ESP32-WROVER Board, BLDC SimpleFOC Board (Clone)
 * **Sensors:** AS5600 Magnetic Encoder
 * **Power:** 12VDC 20A PSU
 
@@ -32,25 +36,50 @@ I built a cycloidal drive that will later function as a joint in a custom 5-degr
 
 ---
 
-## Bill of Materials (BOM)
-A quick list of the main hardware used. You do not need every single screw, just the big ticket items.
-* Part A
-* Part B
-* Part C
+## Hardware Components
+
+| Component | Function |
+| :--- | :--- |
+| **ESP32-WROVER Board** | Main microcontroller, handling serial communication between ESC and computer to enable live telemetry of parameters (angle, velocity, etc). |
+| **5010 360KV BLDC Motor** | Input motor for cycloidal drive. |
+| **12VDC 20A PSU** | Provides power to all electrical components. |
+| **AS5600** | I2C magnetic encoder to track the motor's angular position. |
+| **Brushless DC Motor ESC (FOC)** | Electronic speed controller (ESC) for BLDC via FOC. |
 
 ---
 
 ## Challenges and Fixes
-Be honest about what broke and how you fixed it. Engineers love reading about troubleshooting.
-* **Issue:** The initial motor drivers burned out under load.
-* **Fix:** Swapped to BTS7960 high-current motor drivers and added a heatsink.
+* **Issue:** Experienced slight stuttering during closed loop motion.
+* **Fix:** Temporarily swapped to MT6816 magnetic encoder via SPI communication.
 
+* **Issue:** Jamming between cycloidal disk teeth and ring gear lobes due to compactness of gearbox.
+* **Fix:** Set the pressure angle to minimum lowest amount allowed mathematically.
+
+* **Issue:** Motor overheating during closed loop operation.
+* **Fix:** Introduced PID for direct axis current so that it is as close to 0 as possible while spinning.
 ---
 
-## How to Run the Code
-Provide exact steps for someone to flash your code to their own board if they build this.
+## More Pictures and Videos
 
-1. Clone this repository.
-2. Open the `.ino` file in the Arduino IDE.
-3. Install the `[Specific Library Name]` library.
-4. Upload to board.
+
+<p align="center">
+  <video src="https://github.com/user-attachments/assets/7b36ad69-4149-4719-a4bc-b8de98f3c1cd" width="100%" autoplay loop muted playsinline></video>
+</p>
+Drive operating in open loop conditions (without an encoder).
+
+<br>
+
+<p align="center">
+  <video src="https://github.com/user-attachments/assets/dbe917e2-9807-45cd-9588-70bf32901362" width="100%" autoplay loop muted playsinline></video>
+</p>
+Drive operating in closed loop conditions controlled by voltage (spinning freely like a drone motor).
+
+
+
+
+
+
+
+
+
+
