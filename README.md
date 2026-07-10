@@ -73,7 +73,7 @@ Drive operating in open loop conditions (without an encoder).
 <p align="center">
   <video src="https://github.com/user-attachments/assets/dbe917e2-9807-45cd-9588-70bf32901362" width="100%" autoplay loop muted playsinline></video>
 </p>
-Drive operating in closed loop conditions controlled by voltage (spinning freely like a drone motor).
+BLDC operating in closed loop conditions controlled by voltage (spinning freely like a drone motor).
 
 
 
