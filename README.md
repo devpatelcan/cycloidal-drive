@@ -26,6 +26,7 @@ I built a cycloidal drive that will later function as a joint in a custom 5-degr
 ### Electrical
 * **Microcontroller:** ESP32-WROVER Board, BLDC SimpleFOC Board (Clone)
 * **Sensors:** AS5600 Magnetic Encoder
+* **Actuators:** 5010 360 KV BLDC Motor
 * **Power:** 12VDC 20A PSU
 
 ### Software
