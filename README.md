@@ -52,13 +52,13 @@ I built a cycloidal drive that will later function as a joint in a custom 5-degr
 ## Challenges and Fixes
 * **Issue:** Experienced slight stuttering during closed loop motion.
 * **Fix:** Temporarily swapped to MT6816 magnetic encoder via SPI communication.
-<br>
+
 * **Issue:** Jamming between cycloidal disk teeth and ring gear lobes due to compactness of gearbox.
 * **Fix:** Set the pressure angle to minimum lowest amount allowed mathematically.
-<br>
+
 * **Issue:** Motor overheating during closed loop operation.
 * **Fix:** Introduced PID for direct axis current so that it is as close to 0 as possible while spinning.
-<br>
+
 * **Issue:** Motor stutters upon holding position while usijg PWM for FOC.
 * **Fix:** Swapped to I²C vommunication via AS5600 encoder to increase signal return frequency. 
 ---
