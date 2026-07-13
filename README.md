@@ -59,7 +59,7 @@ I built a cycloidal drive that will later function as a joint in a custom 5-degr
 * **Issue:** Motor overheating during closed loop operation.
 * **Fix:** Introduced PID for direct axis current so that it is as close to 0 as possible while spinning.
 
-* **Issue:** Motor stutters upon holding position while usijg PWM for FOC.
+* **Issue:** Motor stutters upon holding position while using PWM for FOC.
 * **Fix:** Swapped to I²C vommunication via AS5600 encoder to increase signal return frequency. 
 ---
 
