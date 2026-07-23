@@ -1,11 +1,11 @@
 # Cycloidal Drive
 
-<a href="https://www.youtube.com/watch?v=WIKjf5lulUA">
-  <img src="https://img.youtube.com/vi/WIKjf5lulUA/maxresdefault.jpg" width="600">
+<a href="https://www.youtube.com/watch?v=vjJ8yUB2oT0/">
+  <img src="https://img.youtube.com/watch?v=vjJ8yUB2oT0/maxresdefault.jpg" width="600">
 </a>
 
 
-[Click here or on the image to watch the video](https://youtu.be/WIKjf5lulUA)
+[Click here or on the image to watch the video](https://www.youtube.com/watch?v=vjJ8yUB2oT0/)
 
 
 I built a cycloidal drive that will later function as a joint in a custom 5-degree-of-freedom robotic arm. The system achieves a 20:1 gear reduction, handling up to 5.2 Nm of torque while keeping backlash under 0.6°. This setup delivers the high torque and precise output control necessary for robotic actuators.
