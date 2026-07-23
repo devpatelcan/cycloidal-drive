@@ -23,7 +23,7 @@ I built a cycloidal drive that will later function as a joint in a custom 5-degr
 
 ### Electrical
 * **Microcontroller:** ESP32-WROVER Board, BLDC SimpleFOC Board (Clone)
-* **Sensors:** AS5600 Magnetic Encoder
+* **Sensors:** AS5600 Magnetic Encoder (later switched to the MT6816)
 * **Actuators:** 5010 360 KV BLDC Motor
 * **Power:** 12VDC 20A PSU
 
@@ -49,7 +49,7 @@ I built a cycloidal drive that will later function as a joint in a custom 5-degr
 
 ## Challenges and Fixes
 * **Issue:** Experienced slight stuttering during closed loop motion.
-* **Fix:** Temporarily swapped to MT6816 magnetic encoder via SPI communication.
+* **Fix:** Swapped to MT6816 magnetic encoder via SPI communication. The AS5600 has a 1MHz clock speed over I²C while MT6815 has a 16 MHz clock speed over SPI.
 
 * **Issue:** Jamming between cycloidal disk teeth and ring gear lobes due to compactness of gearbox.
 * **Fix:** Set the pressure angle to minimum lowest amount allowed mathematically.
@@ -58,7 +58,44 @@ I built a cycloidal drive that will later function as a joint in a custom 5-degr
 * **Fix:** Introduced PID for direct axis current so that it is as close to 0 as possible while spinning.
 
 * **Issue:** Motor stutters upon holding position while using PWM for FOC.
-* **Fix:** Swapped to I²C vommunication via AS5600 encoder to increase signal return frequency. 
+* **Fix:** Swapped to I²C communication via AS5600 encoder to increase signal return frequency.
+
+<br>
+Other issues I experienced was during the torque test. Below is an explanation of the math behind the theoretical torque:
+
+**1. Input Power ($P_{in}$)**
+<br>
+
+
+$$P_{in} = V_{bus} \times I_{bus} = 9\text{V} \times 3\text{A} = 27\text{W}$$
+
+Voltage was capped 9V ($$V_{bus}$$), current was capped at 3A ($$I_{bus}$$).
+
+**2. Motor Phase Current ($I_q$)**
+<br>
+
+
+$$P_{in} = \frac{3}{2} \times I_q^2 \times R_{phase}$$
+
+$$27 = \frac{3}{2} \times I_q^2 \times 0.15 \implies I_q = \sqrt{120} \approx 10.95\text{ A}$$
+
+$$\frac{3}{2}$$ comes from the 3 phases of the BLDC motor, while FOC converts it into a 2 axis coordinate system ($$I_q$$ and $$I_d$$). The phase resistance of the BLDC (the resistance between 2 of the phase wires) is 0.15 Ω. Therefore, $$I_q = 10.95A$$, which is **A LOT** of current through the motor.
+
+**3. Motor Shaft Torque ($\tau_{motor}$)**
+<br>
+
+
+$$K_t = \frac{60}{2\pi \times KV} = \frac{60}{2\pi \times 360} \approx 0.0265\text{ N}\cdot\text{m/A}$$
+
+$$\tau_{motor} = K_t \times I_q = 0.0265 \times 10.95 \approx 0.290\text{ N}\cdot\text{m}$$
+
+**4. Theoretical Output Torque ($\tau_{out}$)**
+<br>
+
+$$\tau_{out} = \tau_{motor} \times R = 0.290\text{ N}\cdot\text{m} \times 20 = \mathbf{5.81\text{ N}\cdot\text{m}}$$
+
+In reality, the actual torque was closer to ≈4.56 Nm of torque, around 78% efficient. This was far more torque than what my motor mount can safely handle, so I never went past 3A. Thus, the actuator is capable of delivering torque higher than 4.53 Nm if the voltage/current limit is increased in the FOC board's firmware (and with a strong enough mount :)
+
 ---
 
 ## More Pictures and Videos
