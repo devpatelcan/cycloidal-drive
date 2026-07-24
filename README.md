@@ -52,8 +52,8 @@ I built a cycloidal drive that will later function as a joint in a custom 5-degr
 | :--- | :--- |
 | Experienced slight stuttering during closed-loop motion. | Swapped to the **MT6816 magnetic encoder** via SPI communication. Upgraded from the AS5600 (1MHz over I²C) to the MT6816 (16 MHz over SPI) to significantly increase sampling speed. |
 | Jamming occurred between cycloidal disk teeth and ring gear lobes due to tight gearbox clearance. | Reduced the pressure angle to the theoretical mathematical minimum to improve tooth mesh clearance. |
-| Motor ran hot during continuous closed-loop operation. | Implemented a PID loop for direct-axis current ($I_d$) to actively drive $I_d \approx 0\text{ A}$ during rotation, minimizing unwanted reactive losses. |
-| Motor jittered while attempting to hold position using PWM control. | Swapped to $\text{I}^2\text{C}$ communication via the AS5600 encoder to increase overall feedback frequency. |
+| Motor ran hot during continuous closed-loop operation. | Implemented a PID loop for direct-axis current (Id) to actively drive Id to approximately 0 during rotation, minimizing unwanted reactive losses. |
+| Motor jittered while attempting to hold position using PWM control. | Swapped to I²C communication via the AS5600 encoder to increase overall feedback frequency. |
 
 <br>
 Other issues I experienced was during my torque test. Expand the dropdown to view the math behind the theoretical torque. 
